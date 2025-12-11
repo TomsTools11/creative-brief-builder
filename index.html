@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VisualBrief AI - Generate Creative Briefs from Marketing Assets</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Dark Theme - Primary Backgrounds
+              'bg-primary': '#191919',
+              'bg-secondary': '#1F1F1F',
+              'bg-elevated': '#252525',
+              'bg-card': '#1E1E1E',
+              'bg-hover': '#2A2A2A',
+
+              // Text Colors
+              'text-primary': '#FFFFFF',
+              'text-secondary': '#A0A0A0',
+              'text-muted': '#6B6B6B',
+
+              // Accent Colors
+              'accent-blue': '#2383E2',
+              'accent-blue-hover': '#1A6BC4',
+              'accent-teal': '#448361',
+              'accent-teal-light': '#37996B',
+
+              // UI Colors
+              'border-dark': '#2F2F2F',
+              'border-light': '#3A3A3A',
+
+              // Status Colors
+              'success': '#448361',
+              'warning': '#D9730D',
+              'error': '#D44E49',
+              'info': '#2383E2',
+
+              // Legacy compatibility
+              'primary-accent': '#2383E2',
+              'primary-dark': '#191919',
+              'primary-text': '#FFFFFF',
+            },
+            fontFamily: {
+              'display': ['"Red Hat Display"', 'system-ui', 'sans-serif'],
+              'sans': ['system-ui', '-apple-system', 'sans-serif'],
+            },
+            fontSize: {
+              'display': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+              'h1': ['2.25rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+              'h2': ['1.75rem', { lineHeight: '1.3', letterSpacing: '-0.01em', fontWeight: '600' }],
+              'h3': ['1.5rem', { lineHeight: '1.4', fontWeight: '600' }],
+              'h4': ['1.25rem', { lineHeight: '1.5', fontWeight: '500' }],
+              'body-lg': ['1.125rem', { lineHeight: '1.6', fontWeight: '400' }],
+              'body': ['1rem', { lineHeight: '1.6', fontWeight: '400' }],
+              'body-sm': ['0.875rem', { lineHeight: '1.5', fontWeight: '400' }],
+              'caption': ['0.75rem', { lineHeight: '1.4', fontWeight: '400' }],
+            },
+            spacing: {
+              '1': '4px',
+              '2': '8px',
+              '3': '12px',
+              '4': '16px',
+              '5': '20px',
+              '6': '24px',
+              '8': '32px',
+              '10': '40px',
+              '12': '48px',
+              '16': '64px',
+              '20': '80px',
+            },
+            boxShadow: {
+              'card': '0 1px 3px rgba(0,0,0,0.3)',
+              'card-hover': '0 4px 12px rgba(0,0,0,0.4)',
+              'glow-blue': '0 0 20px rgba(35, 131, 226, 0.3)',
+              'glow-teal': '0 0 20px rgba(68, 131, 97, 0.3)',
+            },
+            borderRadius: {
+              'card': '12px',
+              'btn-sm': '6px',
+              'btn': '8px',
+              'btn-lg': '10px',
+              'full': '9999px',
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.3s ease-out forwards',
+              'slide-up': 'slideUp 0.4s ease-out forwards',
+              'pulse-slow': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'spin-slow': 'spin 2s linear infinite',
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(8px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+              slideUp: {
+                '0%': { opacity: '0', transform: 'translateY(20px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' },
+              },
+            },
+          }
+        }
+      }
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: system-ui, -apple-system, sans-serif;
+        background-color: #191919;
+        color: #FFFFFF;
+      }
+
+      .font-display {
+        font-family: 'Red Hat Display', system-ui, sans-serif;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #191919;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3A3A3A;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4A4A4A;
+      }
+
+      /* Focus ring style */
+      .focus-ring:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #2383E2;
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* Gradient text */
+      .text-gradient {
+        background: linear-gradient(135deg, #2383E2 0%, #37996B 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      /* Progress bar animation */
+      .progress-bar {
+        background: linear-gradient(90deg, #2383E2 0%, #37996B 100%);
+        transition: width 0.5s ease-out;
+      }
+
+      /* Card hover effect */
+      .card-hover {
+        transition: all 0.2s ease;
+      }
+      .card-hover:hover {
+        background-color: #252525;
+        border-color: #3A3A3A;
+        transform: translateY(-2px);
+      }
+
+      /* Input focus animation */
+      .input-focus {
+        transition: all 0.2s ease;
+      }
+      .input-focus:focus {
+        border-color: #2383E2;
+        box-shadow: 0 0 0 3px rgba(35, 131, 226, 0.1);
+      }
+
+      /* Step connector line */
+      .step-connector {
+        position: absolute;
+        top: 50%;
+        left: 100%;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, #3A3A3A 0%, transparent 100%);
+      }
+
+      /* Animated gradient border */
+      .gradient-border {
+        position: relative;
+        background: #1E1E1E;
+        border-radius: 12px;
+      }
+      .gradient-border::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 12px;
+        padding: 1px;
+        background: linear-gradient(135deg, #2F2F2F 0%, #3A3A3A 50%, #2F2F2F 100%);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+    </style>
+</head>
+  <body class="bg-bg-primary text-text-primary antialiased">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

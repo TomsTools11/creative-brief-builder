@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
+import { Upload, X, Image as ImageIcon } from 'lucide-react';
 import { MAX_IMAGES, MAX_FILE_SIZE_BYTES } from '../constants';
 import { ProcessedImage } from '../types';
 import { resizeImage, stripBase64Prefix } from '../services/imageUtils';
@@ -18,7 +18,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
   const processFiles = useCallback(async (files: FileList | File[]) => {
     setError(null);
     const newImages: ProcessedImage[] = [...images];
-    
+
     if (newImages.length + files.length > MAX_IMAGES) {
       setError(`You can only upload a maximum of ${MAX_IMAGES} images.`);
       return;
@@ -87,15 +87,16 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-5">
+    <div className="w-full space-y-4">
+      {/* Drop zone */}
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         className={`relative border-2 border-dashed rounded-card p-8 transition-all duration-200 text-center ${
           isDragging
-            ? 'border-primary-accent bg-primary-accent/5'
-            : 'border-border-light hover:border-primary-text bg-white'
+            ? 'border-accent-blue bg-accent-blue/5'
+            : 'border-border-light hover:border-text-secondary bg-bg-secondary/30'
         } ${isProcessing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
         onClick={() => !isProcessing && fileInputRef.current?.click()}
       >
@@ -110,13 +111,13 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
         />
 
         <div className="flex flex-col items-center gap-3">
-          <div className="p-3 bg-primary-accent/10 text-primary-accent rounded-full">
-            <Upload size={28} />
+          <div className="p-3 bg-accent-blue/10 text-accent-blue rounded-full">
+            <Upload size={24} />
           </div>
           <div>
-            <h3 className="text-body-lg font-semibold text-primary-dark">
+            <p className="text-body font-medium text-text-primary">
               Drop images here or click to browse
-            </h3>
+            </p>
             <p className="text-text-secondary mt-1 text-body-sm">
               Supports JPG, PNG, WebP (max {MAX_IMAGES} images, 5MB each)
             </p>
@@ -124,16 +125,21 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
         </div>
       </div>
 
+      {/* Error message */}
       {error && (
-        <div className="p-3 bg-red-50 text-error text-body-sm rounded-btn border border-error/30">
+        <div className="p-3 bg-error/10 text-error text-body-sm rounded-btn border border-error/30">
           {error}
         </div>
       )}
 
+      {/* Image previews */}
       {images.length > 0 && (
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3">
           {images.map((img) => (
-            <div key={img.id} className="relative group rounded-card overflow-hidden border border-border-light shadow-card aspect-square bg-bg-subtle">
+            <div
+              key={img.id}
+              className="relative group rounded-btn overflow-hidden border border-border-dark aspect-square bg-bg-secondary"
+            >
               <img
                 src={img.url}
                 alt={img.name}
@@ -145,18 +151,27 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
                     e.stopPropagation();
                     removeImage(img.id);
                   }}
-                  className="absolute top-2 right-2 p-1.5 bg-white/90 text-primary-text rounded-full hover:bg-error hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 shadow-card"
+                  className="absolute top-2 right-2 p-1.5 bg-bg-primary/90 text-text-secondary rounded-full hover:bg-error hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100"
+                  aria-label={`Remove ${img.name}`}
                 >
-                  <X size={16} />
+                  <X size={14} />
                 </button>
               )}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
+                <p className="text-caption text-white truncate">{img.name}</p>
+              </div>
             </div>
           ))}
-          {/* Placeholder slots to show remaining capacity */}
+
+          {/* Empty slots */}
           {Array.from({ length: Math.max(0, MAX_IMAGES - images.length) }).map((_, i) => (
-            <div key={`empty-${i}`} className="border-2 border-dashed border-border-light rounded-card aspect-square flex flex-col items-center justify-center text-text-secondary bg-bg-subtle/50">
-               <ImageIcon size={24} />
-               <span className="text-caption mt-2 font-medium">Slot {images.length + i + 1}</span>
+            <div
+              key={`empty-${i}`}
+              className="border-2 border-dashed border-border-dark rounded-btn aspect-square flex flex-col items-center justify-center text-text-muted bg-bg-secondary/20 cursor-pointer hover:border-border-light transition-colors"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              <ImageIcon size={20} />
+              <span className="text-caption mt-1.5">Slot {images.length + i + 1}</span>
             </div>
           ))}
         </div>

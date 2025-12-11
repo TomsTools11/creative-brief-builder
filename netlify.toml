@@ -1,8 +1,12 @@
 [build]
-  base = "visual-creative-brief-ai"
+  base = "."
   command = "npm install && npm run build"
   publish = "dist"
   functions = "netlify/functions"
+
+[dev]
+  targetPort = 3000
+  framework = "vite"
 
 [functions]
   node_bundler = "esbuild"
