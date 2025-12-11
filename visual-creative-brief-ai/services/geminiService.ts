@@ -1,8 +1,19 @@
 import { GoogleGenAI, Type } from '@google/genai';
 import { CreativeBrief, ProcessedImage } from '../types';
 
-// Initialize Gemini Client
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+// Lazy-initialize Gemini Client to prevent crash if API key is missing at load time
+let ai: GoogleGenAI | null = null;
+
+function getAIClient(): GoogleGenAI {
+  if (!ai) {
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      throw new Error('GEMINI_API_KEY environment variable is not configured. Please add it to your Netlify environment variables.');
+    }
+    ai = new GoogleGenAI({ apiKey });
+  }
+  return ai;
+}
 
 const RESPONSE_SCHEMA = {
   type: Type.OBJECT,
@@ -90,7 +101,7 @@ export const generateCreativeBrief = async (images: ProcessedImage[]): Promise<C
         ]
     }
 
-    const response = await ai.models.generateContent({
+    const response = await getAIClient().models.generateContent({
       model: 'gemini-2.5-flash',
       contents: contents,
       config: {
