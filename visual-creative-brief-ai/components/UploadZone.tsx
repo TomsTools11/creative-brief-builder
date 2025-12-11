@@ -92,10 +92,10 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`relative border-2 border-dashed rounded-xl p-10 transition-all duration-200 text-center ${
+        className={`relative border-2 border-dashed rounded-card p-10 transition-all duration-200 text-center ${
           isDragging
-            ? 'border-blue-500 bg-blue-50'
-            : 'border-slate-300 hover:border-slate-400 bg-white'
+            ? 'border-accent-teal bg-accent-teal/5'
+            : 'border-gray-300 hover:border-near-black bg-white'
         } ${isProcessing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
         onClick={() => !isProcessing && fileInputRef.current?.click()}
       >
@@ -108,16 +108,16 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
           onChange={handleFileSelect}
           disabled={isProcessing}
         />
-        
+
         <div className="flex flex-col items-center gap-4">
-          <div className="p-4 bg-blue-50 text-blue-600 rounded-full">
+          <div className="p-4 bg-accent-teal/10 text-accent-teal rounded-full">
             <Upload size={32} />
           </div>
           <div>
-            <h3 className="text-lg font-semibold text-slate-900">
+            <h3 className="text-h3 font-bold text-near-black">
               Drop images here or click to browse
             </h3>
-            <p className="text-slate-500 mt-1 text-sm">
+            <p className="text-text-secondary mt-1 text-body-lg">
               Support JPG, PNG, WEBP (Max {MAX_IMAGES} images, 5MB each)
             </p>
           </div>
@@ -125,7 +125,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
       </div>
 
       {error && (
-        <div className="p-4 bg-red-50 text-red-700 text-sm rounded-lg border border-red-200">
+        <div className="p-4 bg-red-50 text-error-red text-body-lg rounded-card border border-error-red/30">
           {error}
         </div>
       )}
@@ -133,7 +133,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
       {images.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {images.map((img) => (
-            <div key={img.id} className="relative group rounded-lg overflow-hidden border border-slate-200 shadow-sm aspect-square bg-slate-100">
+            <div key={img.id} className="relative group rounded-card overflow-hidden border border-gray-200 shadow-card aspect-square bg-gray-100">
               <img
                 src={img.url}
                 alt={img.name}
@@ -145,7 +145,7 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
                     e.stopPropagation();
                     removeImage(img.id);
                   }}
-                  className="absolute top-2 right-2 p-1.5 bg-white/90 text-slate-600 rounded-full hover:bg-red-50 hover:text-red-600 transition-colors opacity-0 group-hover:opacity-100 shadow-sm"
+                  className="absolute top-2 right-2 p-1.5 bg-white/90 text-near-black rounded-full hover:bg-error-red hover:text-white transition-all duration-200 opacity-0 group-hover:opacity-100 shadow-card"
                 >
                   <X size={16} />
                 </button>
@@ -154,9 +154,9 @@ const UploadZone: React.FC<UploadZoneProps> = ({ onImagesChange, images, isProce
           ))}
           {/* Placeholder slots to show remaining capacity */}
           {Array.from({ length: Math.max(0, MAX_IMAGES - images.length) }).map((_, i) => (
-            <div key={`empty-${i}`} className="border-2 border-dashed border-slate-200 rounded-lg aspect-square flex flex-col items-center justify-center text-slate-300 bg-slate-50/50">
+            <div key={`empty-${i}`} className="border-2 border-dashed border-gray-200 rounded-card aspect-square flex flex-col items-center justify-center text-gray-300 bg-gray-50/50">
                <ImageIcon size={24} />
-               <span className="text-xs mt-2 font-medium">Slot {images.length + i + 1}</span>
+               <span className="text-body-sm mt-2 font-medium">Slot {images.length + i + 1}</span>
             </div>
           ))}
         </div>

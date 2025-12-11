@@ -105,19 +105,19 @@ const BriefResult: React.FC<BriefResultProps> = ({ brief, sourceImages, onReset 
       {/* Header Actions */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">Analysis Results</h2>
-          <p className="text-slate-500">Based on {sourceImages.length} analyzed assets</p>
+          <h2 className="text-h2 font-bold text-near-black">Analysis results</h2>
+          <p className="text-text-secondary text-body-lg">Based on {sourceImages.length} analyzed assets</p>
         </div>
         <div className="flex gap-3">
           <button
             onClick={onReset}
-            className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors"
+            className="px-4 py-2 text-body-lg font-medium text-near-black bg-transparent border border-near-black rounded-btn hover:bg-near-black hover:text-white transition-all duration-200"
           >
-            Analyze New Images
+            Analyze new images
           </button>
           <button
             onClick={handleDownloadPDF}
-            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm"
+            className="flex items-center gap-2 px-4 py-2 text-body-lg font-medium text-white bg-near-black rounded-btn hover:bg-near-black/90 transition-all duration-200 shadow-card"
           >
             <Download size={16} />
             Export PDF
@@ -127,56 +127,56 @@ const BriefResult: React.FC<BriefResultProps> = ({ brief, sourceImages, onReset 
 
       {/* Grid Layout */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
+
         {/* Visual Style Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div className="p-4 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
-            <Palette className="text-blue-600" size={20} />
-            <h3 className="font-semibold text-slate-800">Visual Identity</h3>
+        <div className="bg-white rounded-card shadow-card border border-gray-200 overflow-hidden hover:shadow-card-hover transition-all duration-200">
+          <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
+            <Palette className="text-accent-teal" size={20} />
+            <h3 className="font-bold text-near-black text-h3">Visual identity</h3>
           </div>
-          <div className="p-6 space-y-6">
+          <div className="p-5 space-y-6">
             <div>
-              <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-3">Color Palette</h4>
+              <h4 className="text-body-sm uppercase tracking-wider text-text-secondary font-semibold mb-3">Color palette</h4>
               <div className="flex flex-wrap gap-4">
                 <div className="space-y-1">
                   <div
-                    className="w-16 h-16 rounded-lg shadow-inner ring-1 ring-slate-200"
+                    className="w-16 h-16 rounded-btn shadow-inner ring-1 ring-gray-200"
                     style={{ backgroundColor: visualStyle.colorPalette.primary }}
                   />
-                  <span className="text-xs text-slate-500 font-mono block text-center">{visualStyle.colorPalette.primary}</span>
+                  <span className="text-body-sm text-text-secondary font-mono block text-center">{visualStyle.colorPalette.primary}</span>
                 </div>
                 {visualStyle.colorPalette.secondary.map((color, i) => (
                   <div key={i} className="space-y-1">
                     <div
-                      className="w-16 h-16 rounded-lg shadow-inner ring-1 ring-slate-200"
+                      className="w-16 h-16 rounded-btn shadow-inner ring-1 ring-gray-200"
                       style={{ backgroundColor: color }}
                     />
-                    <span className="text-xs text-slate-500 font-mono block text-center">{color}</span>
+                    <span className="text-body-sm text-text-secondary font-mono block text-center">{color}</span>
                   </div>
                 ))}
                  <div className="space-y-1">
                   <div
-                    className="w-16 h-16 rounded-lg shadow-inner ring-1 ring-slate-200"
+                    className="w-16 h-16 rounded-btn shadow-inner ring-1 ring-gray-200"
                     style={{ backgroundColor: visualStyle.colorPalette.accent }}
                   />
-                  <span className="text-xs text-slate-500 font-mono block text-center">{visualStyle.colorPalette.accent}</span>
+                  <span className="text-body-sm text-text-secondary font-mono block text-center">{visualStyle.colorPalette.accent}</span>
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 gap-4">
               <div>
-                <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Typography</h4>
-                <div className="bg-slate-50 p-3 rounded-lg border border-slate-100">
-                    <p className="font-medium text-slate-800">{visualStyle.typography.style}</p>
-                    <p className="text-sm text-slate-500 mt-1">{visualStyle.typography.hierarchy}</p>
+                <h4 className="text-body-sm uppercase tracking-wider text-text-secondary font-semibold mb-2">Typography</h4>
+                <div className="bg-gray-50 p-3 rounded-btn border border-gray-100">
+                    <p className="font-medium text-near-black text-body-lg">{visualStyle.typography.style}</p>
+                    <p className="text-body-lg text-text-secondary mt-1">{visualStyle.typography.hierarchy}</p>
                 </div>
               </div>
               <div>
-                 <h4 className="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2">Motifs</h4>
+                 <h4 className="text-body-sm uppercase tracking-wider text-text-secondary font-semibold mb-2">Motifs</h4>
                  <div className="flex flex-wrap gap-2">
                     {visualStyle.visualMotifs.map((m, i) => (
-                        <span key={i} className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full">{m}</span>
+                        <span key={i} className="px-2 py-1 bg-accent-teal/10 text-accent-teal text-body-sm rounded-full font-medium">{m}</span>
                     ))}
                  </div>
               </div>
@@ -185,27 +185,27 @@ const BriefResult: React.FC<BriefResultProps> = ({ brief, sourceImages, onReset 
         </div>
 
         {/* Brand Voice Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-          <div className="p-4 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
-            <MessageSquare className="text-indigo-600" size={20} />
-            <h3 className="font-semibold text-slate-800">Brand Voice & Tone</h3>
+        <div className="bg-white rounded-card shadow-card border border-gray-200 overflow-hidden hover:shadow-card-hover transition-all duration-200">
+          <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
+            <MessageSquare className="text-accent-blue" size={20} />
+            <h3 className="font-bold text-near-black text-h3">Brand voice & tone</h3>
           </div>
-          <div className="p-6 space-y-6">
+          <div className="p-5 space-y-6">
             <div>
-               <h4 className="text-sm font-medium text-slate-700 mb-2">Tone Profile</h4>
-               <p className="text-slate-600 leading-relaxed bg-indigo-50/50 p-3 rounded-lg border border-indigo-100">
+               <h4 className="text-body-lg font-medium text-near-black mb-2">Tone profile</h4>
+               <p className="text-text-secondary leading-relaxed bg-accent-blue/5 p-3 rounded-btn border border-accent-blue/10 text-body-lg">
                  {brandVoice.tone}
                </p>
             </div>
             <div>
-               <h4 className="text-sm font-medium text-slate-700 mb-2">Emotional Appeal</h4>
-               <p className="text-slate-600 text-sm">{brandVoice.emotionalAppeal}</p>
+               <h4 className="text-body-lg font-medium text-near-black mb-2">Emotional appeal</h4>
+               <p className="text-text-secondary text-body-lg">{brandVoice.emotionalAppeal}</p>
             </div>
             <div>
-               <h4 className="text-sm font-medium text-slate-700 mb-2">Personality Traits</h4>
+               <h4 className="text-body-lg font-medium text-near-black mb-2">Personality traits</h4>
                <div className="flex flex-wrap gap-2">
                  {brandVoice.personality.map((p, i) => (
-                   <span key={i} className="px-3 py-1 bg-indigo-50 text-indigo-700 text-sm rounded-full font-medium">
+                   <span key={i} className="px-3 py-1 bg-accent-blue/10 text-accent-blue text-body-lg rounded-full font-medium">
                      {p}
                    </span>
                  ))}
@@ -215,43 +215,43 @@ const BriefResult: React.FC<BriefResultProps> = ({ brief, sourceImages, onReset 
         </div>
 
         {/* Messaging & Audience Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden md:col-span-2">
-          <div className="p-4 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
-            <Users className="text-emerald-600" size={20} />
-            <h3 className="font-semibold text-slate-800">Audience & Messaging</h3>
+        <div className="bg-white rounded-card shadow-card border border-gray-200 overflow-hidden md:col-span-2 hover:shadow-card-hover transition-all duration-200">
+          <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
+            <Users className="text-success-green" size={20} />
+            <h3 className="font-bold text-near-black text-h3">Audience & messaging</h3>
           </div>
-          <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="p-5 grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Target Audience</h4>
+              <h4 className="text-body-lg font-bold text-near-black uppercase tracking-wide">Target audience</h4>
               <div className="space-y-3">
-                 <div className="bg-emerald-50 p-4 rounded-lg">
-                    <p className="text-emerald-900 font-medium">{targetAudience.inferredDemographic}</p>
+                 <div className="bg-success-green/10 p-4 rounded-btn">
+                    <p className="text-near-black font-medium text-body-lg">{targetAudience.inferredDemographic}</p>
                  </div>
                  <ul className="space-y-2">
                     {targetAudience.psychographics.map((item, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-slate-600">
-                            <span className="text-emerald-500 mt-1">•</span> {item}
+                        <li key={i} className="flex items-start gap-2 text-body-lg text-text-secondary">
+                            <span className="text-success-green mt-1">&#8226;</span> {item}
                         </li>
                     ))}
                  </ul>
               </div>
             </div>
             <div className="space-y-4">
-              <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wide">Messaging Strategy</h4>
+              <h4 className="text-body-lg font-bold text-near-black uppercase tracking-wide">Messaging strategy</h4>
               <div className="space-y-4">
                   <div>
-                      <span className="text-xs font-semibold text-slate-400 uppercase">Value Prop</span>
-                      <p className="text-slate-700 text-sm mt-1">{messaging.valueProposition}</p>
+                      <span className="text-body-sm font-semibold text-text-secondary uppercase">Value prop</span>
+                      <p className="text-near-black text-body-lg mt-1">{messaging.valueProposition}</p>
                   </div>
                   <div>
-                      <span className="text-xs font-semibold text-slate-400 uppercase">CTA Style</span>
-                      <p className="text-slate-700 text-sm mt-1">{messaging.callToActionStyle}</p>
+                      <span className="text-body-sm font-semibold text-text-secondary uppercase">CTA style</span>
+                      <p className="text-near-black text-body-lg mt-1">{messaging.callToActionStyle}</p>
                   </div>
                    <div>
-                      <span className="text-xs font-semibold text-slate-400 uppercase">Key Themes</span>
+                      <span className="text-body-sm font-semibold text-text-secondary uppercase">Key themes</span>
                       <div className="flex flex-wrap gap-2 mt-1">
                          {messaging.keyThemes.map((t, i) => (
-                             <span key={i} className="text-xs border border-slate-200 text-slate-600 px-2 py-1 rounded">{t}</span>
+                             <span key={i} className="text-body-sm border border-gray-200 text-text-secondary px-2 py-1 rounded-btn-sm">{t}</span>
                          ))}
                       </div>
                   </div>
@@ -261,47 +261,47 @@ const BriefResult: React.FC<BriefResultProps> = ({ brief, sourceImages, onReset 
         </div>
 
         {/* Recommendations Card */}
-        <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden md:col-span-2">
-          <div className="p-4 border-b border-slate-100 bg-slate-50 flex items-center gap-2">
-            <Lightbulb className="text-amber-500" size={20} />
-            <h3 className="font-semibold text-slate-800">Strategic Recommendations</h3>
+        <div className="bg-white rounded-card shadow-card border border-gray-200 overflow-hidden md:col-span-2 hover:shadow-card-hover transition-all duration-200">
+          <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center gap-2">
+            <Lightbulb className="text-warning-amber" size={20} />
+            <h3 className="font-bold text-near-black text-h3">Strategic recommendations</h3>
           </div>
-          <div className="p-6">
+          <div className="p-5">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <h4 className="flex items-center gap-2 text-sm font-bold text-green-700 mb-3">
-                    <span className="w-2 h-2 rounded-full bg-green-500"></span> Do This
+                <h4 className="flex items-center gap-2 text-body-lg font-bold text-success-green mb-3">
+                    <span className="w-2 h-2 rounded-full bg-success-green"></span> Do this
                 </h4>
                 <ul className="space-y-2">
                     {recommendations.doThis.map((item, i) => (
-                        <li key={i} className="text-sm text-slate-600 bg-green-50/50 p-2 rounded border border-green-100">{item}</li>
+                        <li key={i} className="text-body-lg text-text-secondary bg-success-green/5 p-2 rounded-btn-sm border border-success-green/20">{item}</li>
                     ))}
                 </ul>
               </div>
               <div>
-                <h4 className="flex items-center gap-2 text-sm font-bold text-red-700 mb-3">
-                    <span className="w-2 h-2 rounded-full bg-red-500"></span> Avoid This
+                <h4 className="flex items-center gap-2 text-body-lg font-bold text-error-red mb-3">
+                    <span className="w-2 h-2 rounded-full bg-error-red"></span> Avoid this
                 </h4>
                  <ul className="space-y-2">
                     {recommendations.avoidThis.map((item, i) => (
-                        <li key={i} className="text-sm text-slate-600 bg-red-50/50 p-2 rounded border border-red-100">{item}</li>
+                        <li key={i} className="text-body-lg text-text-secondary bg-error-red/5 p-2 rounded-btn-sm border border-error-red/20">{item}</li>
                     ))}
                 </ul>
               </div>
               <div>
-                <h4 className="flex items-center gap-2 text-sm font-bold text-blue-700 mb-3">
-                    <span className="w-2 h-2 rounded-full bg-blue-500"></span> Content Ideas
+                <h4 className="flex items-center gap-2 text-body-lg font-bold text-accent-teal mb-3">
+                    <span className="w-2 h-2 rounded-full bg-accent-teal"></span> Content ideas
                 </h4>
                  <ul className="space-y-2">
                     {recommendations.contentIdeas.map((item, i) => (
-                        <li key={i} className="text-sm text-slate-600 bg-blue-50/50 p-2 rounded border border-blue-100">{item}</li>
+                        <li key={i} className="text-body-lg text-text-secondary bg-accent-teal/5 p-2 rounded-btn-sm border border-accent-teal/20">{item}</li>
                     ))}
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   );
