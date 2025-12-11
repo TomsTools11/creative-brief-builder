@@ -37,18 +37,18 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex flex-col font-serif text-near-black">
+    <div className="min-h-screen bg-white flex flex-col font-sans text-primary-text">
 
       {/* Navbar */}
-      <header className="bg-near-black sticky top-0 z-50">
+      <header className="bg-primary-dark sticky top-0 z-50">
         <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-accent-teal p-1.5 rounded-btn text-white">
+            <div className="bg-primary-accent p-2 rounded-btn text-white">
               <Sparkles size={20} />
             </div>
-            <h1 className="font-bold text-xl tracking-tight text-white">VisualBrief AI</h1>
+            <h1 className="font-bold text-h4 tracking-tight text-white">VisualBrief AI</h1>
           </div>
-          <div className="text-body-lg text-text-secondary">
+          <div className="text-body-sm text-text-secondary">
              Powered by Gemini 2.5
           </div>
         </div>
@@ -58,24 +58,24 @@ const App: React.FC = () => {
 
         {/* Error Banner */}
         {error && (
-          <div className="mb-6 p-4 bg-red-50 border border-error-red/30 rounded-card flex items-center gap-3 text-error-red animate-fade-in">
+          <div className="mb-6 p-4 bg-red-50 border border-error/30 rounded-card flex items-center gap-3 text-error animate-fade-in">
             <AlertCircle size={20} />
-            <p className="text-body-lg">{error}</p>
+            <p className="text-body">{error}</p>
           </div>
         )}
 
         {appState === 'upload' && (
-          <div className="max-w-3xl mx-auto text-center space-y-10 py-16">
-            <div className="space-y-5">
-              <h2 className="text-h1 font-bold tracking-tight text-near-black">
-                Generate a creative brief <br/> from your visual assets
+          <div className="max-w-3xl mx-auto text-center space-y-10 py-12">
+            <div className="space-y-4">
+              <h2 className="text-h1 font-bold tracking-tight text-primary-dark">
+                Generate a creative brief from your visual assets
               </h2>
-              <p className="text-h4 text-text-secondary max-w-xl mx-auto">
+              <p className="text-body-lg text-text-secondary max-w-2xl mx-auto">
                 Upload up to {MAX_IMAGES} marketing images. Our AI will analyze your visual style, brand voice, and messaging to create a professional brief in seconds.
               </p>
             </div>
 
-            <div className="bg-white p-6 rounded-card shadow-card border border-gray-200">
+            <div className="bg-white p-6 rounded-card shadow-card border border-border-light">
               <UploadZone
                 images={images}
                 onImagesChange={setImages}
@@ -86,28 +86,28 @@ const App: React.FC = () => {
                 <button
                   onClick={handleAnalyze}
                   disabled={images.length === 0}
-                  className={`flex items-center gap-2 px-8 py-4 rounded-btn-lg font-semibold text-lg transition-all duration-200 transform focus-ring ${
+                  className={`flex items-center gap-2 px-6 py-3 rounded-btn font-semibold text-body transition-all duration-200 transform focus-ring ${
                     images.length > 0
-                      ? 'bg-near-black text-white hover:bg-near-black/90 shadow-card hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]'
-                      : 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                      ? 'bg-primary-text text-white hover:bg-primary-dark shadow-card hover:shadow-card-hover hover:-translate-y-0.5 active:scale-[0.98]'
+                      : 'bg-border-light text-text-secondary cursor-not-allowed'
                   }`}
                 >
                   Start analysis
-                  <ArrowRight size={20} />
+                  <ArrowRight size={18} />
                 </button>
               </div>
             </div>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pt-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pt-6">
               {[
-                { title: 'Visual analysis', desc: 'Extracts color palettes, typography, and layout patterns.' },
-                { title: 'Brand voice', desc: 'Identifies emotional tone and personality traits.' },
-                { title: 'Strategic output', desc: 'Get actionable recommendations for your next campaign.' }
+                { title: 'Visual analysis', desc: 'Extracts color palettes, typography, and layout patterns from your images.' },
+                { title: 'Brand voice', desc: 'Identifies emotional tone and personality traits in your visual content.' },
+                { title: 'Strategic output', desc: 'Get actionable recommendations for your next marketing campaign.' }
               ].map((f, i) => (
-                <div key={i} className="p-5 rounded-card bg-white border border-gray-200 shadow-card hover:shadow-card-hover transition-all duration-200">
-                  <h3 className="font-bold text-near-black mb-2 text-h3">{f.title}</h3>
-                  <p className="text-body-lg text-text-secondary">{f.desc}</p>
+                <div key={i} className="p-5 rounded-card bg-white border border-border-light shadow-card hover:shadow-card-hover transition-all duration-200">
+                  <h3 className="font-bold text-primary-dark mb-2 text-body-lg">{f.title}</h3>
+                  <p className="text-body-sm text-text-secondary">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -117,16 +117,16 @@ const App: React.FC = () => {
         {appState === 'analyzing' && (
           <div className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-6 animate-fade-in">
             <div className="relative">
-              <div className="absolute inset-0 bg-accent-teal blur-xl opacity-20 animate-pulse rounded-full"></div>
-              <Loader2 size={64} className="text-near-black animate-spin relative z-10" />
+              <div className="absolute inset-0 bg-primary-accent blur-xl opacity-20 animate-pulse rounded-full"></div>
+              <Loader2 size={56} className="text-primary-dark animate-spin relative z-10" />
             </div>
-            <div className="space-y-2">
-              <h3 className="text-h2 font-bold text-near-black">Analyzing your assets...</h3>
-              <p className="text-text-secondary text-h4">Deconstructing visual elements, extracting brand voice, and compiling strategy.</p>
+            <div className="space-y-3">
+              <h3 className="text-h2 font-bold text-primary-dark">Analyzing your assets</h3>
+              <p className="text-text-secondary text-body-lg max-w-md">Deconstructing visual elements, extracting brand voice, and compiling strategy.</p>
               <div className="flex justify-center gap-2 pt-4">
-                  <span className="w-2 h-2 bg-accent-teal rounded-full animate-bounce" style={{ animationDelay: '0ms'}}></span>
-                  <span className="w-2 h-2 bg-accent-teal rounded-full animate-bounce" style={{ animationDelay: '150ms'}}></span>
-                  <span className="w-2 h-2 bg-accent-teal rounded-full animate-bounce" style={{ animationDelay: '300ms'}}></span>
+                  <span className="w-2 h-2 bg-primary-accent rounded-full animate-bounce" style={{ animationDelay: '0ms'}}></span>
+                  <span className="w-2 h-2 bg-primary-accent rounded-full animate-bounce" style={{ animationDelay: '150ms'}}></span>
+                  <span className="w-2 h-2 bg-primary-accent rounded-full animate-bounce" style={{ animationDelay: '300ms'}}></span>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ const App: React.FC = () => {
 
       </main>
 
-      <footer className="bg-near-black py-8 text-center text-body-lg text-text-secondary">
+      <footer className="bg-primary-dark py-6 text-center text-body-sm text-text-secondary">
         <p>&copy; 2025 VisualBrief AI. Built with React & Gemini.</p>
       </footer>
     </div>
