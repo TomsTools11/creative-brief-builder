@@ -41,15 +41,12 @@ const App: React.FC = () => {
 
       {/* Navbar */}
       <header className="bg-primary-dark sticky top-0 z-50">
-        <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-[1280px] mx-auto px-6 h-16 flex items-center">
           <div className="flex items-center gap-3">
             <div className="bg-primary-accent p-2 rounded-btn text-white">
               <Sparkles size={20} />
             </div>
             <h1 className="font-bold text-h4 tracking-tight text-white">VisualBrief AI</h1>
-          </div>
-          <div className="text-body-sm text-text-secondary">
-             Powered by Gemini 2.5
           </div>
         </div>
       </header>
@@ -139,7 +136,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="bg-primary-dark py-6 text-center text-body-sm text-text-secondary">
-        <p>&copy; 2025 VisualBrief AI. Built with React & Gemini.</p>
+        <p>Made with ❤️ by <a href="https://tom-panos.com" target="_blank" rel="noopener noreferrer" className="text-primary-accent hover:text-accent-light transition-colors">Tom in Milwaukee, WI</a>.</p>
       </footer>
     </div>
   );
