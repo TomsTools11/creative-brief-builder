@@ -5,10 +5,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Visual Creative Brief AI</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'near-black': '#111111',
+              'accent-blue': '#0000EE',
+              'accent-teal': '#3870FF',
+              'light-teal': '#0095FF',
+              'error-red': '#FF5252',
+              'success-green': '#10B981',
+              'warning-amber': '#F59E0B',
+              'text-secondary': '#6B7280',
+            },
+            fontFamily: {
+              'serif': ['"Times New Roman"', 'Times', 'serif'],
+              'sans': ['system-ui', 'sans-serif'],
+            },
+            fontSize: {
+              'display': ['3.5rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+              'h1': ['3rem', { lineHeight: '1.2', letterSpacing: '-0.02em', fontWeight: '700' }],
+              'h2': ['1.25rem', { lineHeight: '1.2', fontWeight: '700' }],
+              'h3': ['1rem', { lineHeight: '1.2', fontWeight: '700' }],
+              'h4': ['0.938rem', { lineHeight: '1.6', fontWeight: '400' }],
+              'body-lg': ['0.875rem', { lineHeight: '1.6', fontWeight: '400' }],
+              'body': ['0.75rem', { lineHeight: '1.6', fontWeight: '400' }],
+              'body-sm': ['0.625rem', { lineHeight: '1.6', fontWeight: '400' }],
+            },
+            spacing: {
+              '1': '4px',
+              '2': '8px',
+              '3': '12px',
+              '4': '16px',
+              '5': '20px',
+              '6': '24px',
+              '8': '32px',
+              '10': '40px',
+              '12': '48px',
+              '16': '64px',
+            },
+            boxShadow: {
+              'card': '0 1px 3px rgba(0,0,0,0.1)',
+              'card-hover': '0 4px 12px rgba(0,0,0,0.15)',
+            },
+            borderRadius: {
+              'card': '12px',
+              'btn-sm': '6px',
+              'btn': '8px',
+              'btn-lg': '10px',
+            },
+          }
+        }
+      }
+    </script>
     <style>
       body {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Times New Roman', Times, serif;
       }
       /* Custom scrollbar for better aesthetics */
       ::-webkit-scrollbar {
@@ -16,14 +69,26 @@
         height: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #f1f1f1; 
+        background: #111111;
       }
       ::-webkit-scrollbar-thumb {
-        background: #cbd5e1; 
+        background: #3870FF;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #94a3b8; 
+        background: #0095FF;
+      }
+      /* Focus ring style */
+      .focus-ring:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px #111111;
+      }
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
       }
     </style>
   <script type="importmap">
@@ -40,7 +105,7 @@
 </script>
 <link rel="stylesheet" href="/index.css">
 </head>
-  <body class="bg-slate-50 text-slate-900 antialiased">
+  <body class="bg-white text-near-black antialiased font-serif">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
