@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, AlertCircle, Palette, Type, LayoutGrid, FileCheck, Zap, CheckCircle2, Circle, Loader2, Globe, RefreshCw } from 'lucide-react';
+import { ArrowRight, AlertCircle, Palette, Type, LayoutGrid, FileCheck, Zap, CheckCircle2, Circle, Loader2, Globe, RefreshCw } from 'lucide-react';
+import docbuildrLogo from './docbuildr-logo.svg';
 import { ProcessedImage, AppState, CreativeBrief } from './types';
 import { MAX_IMAGES } from './constants';
 import UploadZone from './components/UploadZone';
@@ -76,12 +77,9 @@ const App: React.FC = () => {
       {/* Header */}
       <header className="border-b border-border-dark sticky top-0 z-50 bg-bg-primary/95 backdrop-blur-sm">
         <div className="max-w-[1280px] mx-auto px-6 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <div className="bg-accent-blue/20 p-1.5 rounded-btn">
-              <Sparkles size={18} className="text-accent-blue" />
-            </div>
-            <span className="font-display font-semibold text-body text-text-primary">VisualBrief AI</span>
-          </div>
+          <a href="https://docbuildr.app" target="_blank" rel="noopener noreferrer" className="flex items-center">
+            <img src={docbuildrLogo} alt="DocBuildr" className="h-8" />
+          </a>
 
           {appState === 'results' && (
             <button
@@ -427,12 +425,9 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="border-t border-border-dark py-6 px-6">
         <div className="max-w-[1280px] mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="bg-accent-blue/20 p-1 rounded-btn-sm">
-              <Sparkles size={14} className="text-accent-blue" />
-            </div>
-            <span className="text-body-sm text-text-secondary">VisualBrief AI</span>
-          </div>
+          <a href="https://docbuildr.app" target="_blank" rel="noopener noreferrer" className="flex items-center">
+            <img src={docbuildrLogo} alt="DocBuildr" className="h-6" />
+          </a>
           <p className="text-body-sm text-text-muted">
             Made with <span className="text-error">❤</span> by <a href="https://tom-panos.com" target="_blank" rel="noopener noreferrer" className="text-accent-blue hover:underline">Tom in Milwaukee, WI</a>
           </p>
