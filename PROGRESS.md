@@ -1,12 +1,37 @@
-# VisualBrief AI - Development Progress
+# Creative Brief Builder - Development Progress
 
-**Last Updated:** December 11, 2025
+**Last Updated:** December 12, 2025
 **Status:** Complete and Deployed
 **Live URL:** Deployed on Netlify
 
 ---
 
-## Latest Session (December 11, 2025)
+## Latest Session (December 12, 2025)
+
+### Branding Updates
+
+#### 1. New Logo - DocBuildr
+Replaced the previous VisualBrief AI branding with the new DocBuildr logo throughout the application.
+
+**Changes:**
+- Header logo: Now displays `docbuildr-logo.svg` (height: 32px)
+- Footer logo: Now displays `docbuildr-logo.svg` (height: 24px)
+- Both logos link to https://docbuildr.app (opens in new tab)
+- Removed Sparkles icon and "VisualBrief AI" text
+
+**Files modified:**
+- `App.tsx` - Updated header and footer to use new logo with external link
+- `vite-env.d.ts` - Added TypeScript declaration for SVG imports
+
+#### 2. Browser Tab Title
+Updated the browser tab title from "VisualBrief AI - Generate Creative Briefs from Marketing Assets" to "Creative Brief Builder".
+
+**File modified:**
+- `index.html` - Updated `<title>` tag
+
+---
+
+## Previous Session (December 11, 2025)
 
 ### Major Changes
 
