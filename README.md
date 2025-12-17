@@ -1,4 +1,4 @@
-# VisualBrief AI
+# Creative Brief Builder
 
 > **AI-Powered Creative Brief Generator** — Upload your marketing assets and instantly receive a comprehensive creative brief documenting visual style, brand voice, messaging strategy, and audience insights.
 
@@ -11,7 +11,7 @@
 
 ## 📖 Overview
 
-**VisualBrief AI** transforms your marketing images into professional creative briefs in under 60 seconds. Powered by Google's Gemini 2.5 Flash AI model, it analyzes your brand assets and generates a beautifully formatted PDF documenting your visual identity, brand voice, messaging strategy, and strategic recommendations.
+**Creative Brief Builder** transforms your marketing images into professional creative briefs in under 60 seconds. Powered by Google's Gemini 2.5 Flash AI model, it analyzes your brand assets and generates a beautifully formatted PDF documenting your visual identity, brand voice, messaging strategy, and strategic recommendations.
 
 Perfect for:
 - **Designers** needing to document brand systems quickly
